@@ -1,0 +1,12 @@
+# PHPStorm
+.idea
+
+# Netbeans
+build
+nbproject/*
+lib
+pom.xml.asc
+
+vendor
+*/*/input*.txt
+composer.lock
