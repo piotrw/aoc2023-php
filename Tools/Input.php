@@ -4,8 +4,8 @@ namespace Tools;
 
 use Exception;
 
-class Input
-{
+class Input {
+
     protected ?string $day = null;
     protected bool $demo = false;
     protected bool $create = false;
@@ -13,9 +13,8 @@ class Input
     protected Config $config;
 
     public function __construct(
-        array $input
-    )
-    {
+            array $input
+    ) {
         foreach ($input as $item) {
             switch ($item) {
                 case 'help' :
@@ -35,8 +34,7 @@ class Input
         }
     }
 
-    public function injectConfig(Config $config): self
-    {
+    public function injectConfig(Config $config): self {
         $this->config = $config;
         return $this;
     }
@@ -44,43 +42,37 @@ class Input
     /**
      * @return string|null
      */
-    public function getDay(): ?string
-    {
+    public function getDay(): ?string {
         return $this->day;
     }
 
     /**
      * @return bool
      */
-    public function isDemo(): bool
-    {
+    public function isDemo(): bool {
         return $this->demo;
     }
 
     /**
      * @return bool
      */
-    public function isCreate(): bool
-    {
+    public function isCreate(): bool {
         return $this->create;
     }
 
     /**
      * @return bool
      */
-    public function isHelp(): bool
-    {
+    public function isHelp(): bool {
         return $this->help;
     }
-
 
     /**
      * @param string|null $filename If empty it will load default input/demo file
      * @return string[]
      * @throws Exception
      */
-    public function loadData(?string $filename = null): array
-    {
+    public function loadData(?string $filename = null): array {
         $dataDir = $this->config->getDataDir() . DIRECTORY_SEPARATOR . 'day' . $this->getDay() . DIRECTORY_SEPARATOR;
         if (is_null($filename)) {
             $filename = $this->isDemo() ? "demo.txt" : "input.txt";
@@ -92,10 +84,9 @@ class Input
 
         $file = file_get_contents($dataDir . $filename);
         if ($file) {
-            return explode("\n", $file);
+            return explode(PHP_EOL, $file);
         }
 
         throw new Exception(sprintf('Data file "%s" is empty', $dataDir . $filename));
     }
-
 }

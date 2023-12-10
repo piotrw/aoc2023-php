@@ -2,11 +2,12 @@
 
 use Tools\AocEngine;
 
-if(!file_exists("vendor/autoload.php")) {
+if(!file_exists('./vendor/autoload.php')) {
     exit("\e[01;31m /!\\ Application is not installed, please run: composer install ! \e[0m\n");
 }
 
-include "vendor/autoload.php";
+include './vendor/autoload.php';
+include './library.php';
 
 $config = [
     "year" => 2023,

@@ -6,18 +6,17 @@ use Exception;
 use Tools\Enum\MessageEnum;
 use Tools\Interface\TaskInterface;
 
-abstract class AbstractTask implements TaskInterface
-{
+abstract class AbstractTask implements TaskInterface {
+
     public function __construct(
-        protected Input  $input,
-        protected Output $output,
-        protected Config $config,
-    )
-    {
+            protected Input $input,
+            protected Output $output,
+            protected Config $config,
+    ) {
+        
     }
 
-    public function taskResult(string $firstResult = null, string $secondResult = null)
-    {
+    public function taskResult(string $firstResult = null, string $secondResult = null) {
         $this->output->newLine();
         $this->output->result([
             MessageEnum::HR,
@@ -32,20 +31,27 @@ abstract class AbstractTask implements TaskInterface
      * @return string[]
      * @throws Exception
      */
-    public function loadData(?string $filename = null): array
-    {
+    public function loadData(?string $filename = null): array {
         return $this->input->loadData($filename);
     }
-    
+
     /**
      * @param string|null $filename If empty it will load default input/demo file
      * @return array
      * @throws Exception
      */
-    public function loadDataAsArray(?string $filename = null): array
-    {
+    public function loadDataAsArray(?string $filename = null): array {
         $data = $this->input->loadData($filename);
-        
+
         return array_map(fn($row) => str_split(trim($row)), $data);
     }
+
+    public function task1(array $data): int {
+        
+    }
+
+    public function task2(array $data): int {
+        
+    }
+
 }
